@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {DayComponent} from "../day/day.component";
 
 @Component({
   selector: 'app-day01',
@@ -8,19 +9,9 @@ import {HttpClient} from "@angular/common/http";
   templateUrl: './day01.component.html',
   styleUrl: './day01.component.scss'
 })
-export class Day01Component implements OnInit {
-  resultPartOne: number = -1;
-  resultPartTwo: number = -1;
+export class Day01Component extends DayComponent {
 
-  storeData: string[] = [];
-
-  constructor(private httpClient: HttpClient) {
-  }
-
-  ngOnInit(): void {
-    const url: string = '/assets/demo/day01.dat';
-    this.httpClient.request('GET', url, {responseType: 'text'}).subscribe(res => {
-      this.storeData = res.replaceAll('\r', '').split('\n');
-    });
+  constructor(httpClient: HttpClient) {
+    super(httpClient, 1);
   }
 }
