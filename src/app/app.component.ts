@@ -6,7 +6,7 @@ import {DayComponent} from "./day/day.component";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, Day01Component],
+  imports: [RouterOutlet, Day01Component, DayComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

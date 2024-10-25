@@ -8,12 +8,13 @@ import {HttpClient} from "@angular/common/http";
   templateUrl: './day.component.html',
   styleUrl: './day.component.scss'
 })
-export abstract class DayComponent implements OnInit {
+export class DayComponent implements OnInit {
   resultPartOne: number = -1;
   resultPartTwo: number = -1;
   storeData: string[] = [];
+  dayNumber = 1;
 
-  protected constructor(private httpClient: HttpClient, private dayNumber: number) {
+ constructor(private httpClient: HttpClient) {
   }
 
   ngOnInit(): void {

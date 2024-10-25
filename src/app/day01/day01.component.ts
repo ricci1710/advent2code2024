@@ -10,8 +10,4 @@ import {DayComponent} from "../day/day.component";
   styleUrl: './day01.component.scss'
 })
 export class Day01Component extends DayComponent {
-
-  constructor(httpClient: HttpClient) {
-    super(httpClient, 1);
-  }
 }
