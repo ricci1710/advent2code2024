@@ -11,6 +11,7 @@ export abstract class DayBase {
     const url: string = '/assets/demo/day0' + this.day.toString() +'.dat';
     return this.httpClient.request('GET', url, {responseType: 'text'}).subscribe(res => {
       this.storeData = res.replaceAll('\r', '').split('\n');
+      this.storeData.pop();
     });
   }
 

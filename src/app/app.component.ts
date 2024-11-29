@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {Day01} from "./calendar-days/day01/day01";
 import {HttpClient} from "@angular/common/http";
