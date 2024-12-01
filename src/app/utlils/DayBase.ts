@@ -7,8 +7,8 @@ export abstract class DayBase {
   constructor(private day: number, private httpClient: HttpClient) {
   }
 
-  readDemoData():Subscription {
-    const url: string = '/assets/demo/day0' + this.day.toString() +'.dat';
+  readDemoData(): Subscription {
+    const url: string = '/assets/demo/day0' + this.day.toString() + '.dat';
     return this.httpClient.request('GET', url, {responseType: 'text'}).subscribe(res => {
       this.storeData = res.replaceAll('\r', '').split('\n');
       this.storeData.pop();
@@ -16,14 +16,18 @@ export abstract class DayBase {
   }
 
   readPrivateData() {
-    const url: string = '/assets/private/day0' + this.day.toString() +'.dat';
+    const url: string = '/assets/private/day0' + this.day.toString() + '.dat';
     return this.httpClient.request('GET', url, {responseType: 'text'}).subscribe(res => {
       this.storeData = res.replaceAll('\r', '').split('\n');
+      this.storeData.pop();
     });
   }
 
   abstract calcPartOne(storeData: string[]): number;
+
   abstract calcPartTwo(storeData: string[]): number;
 
-  getStoreData(): string[] { return this.storeData; }
+  getStoreData(): string[] {
+    return this.storeData;
+  }
 }
