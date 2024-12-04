@@ -22,14 +22,14 @@ Beim Durchsuchen des beschädigten Speichers stellen Sie fest, dass einige der b
 
 Es gibt zwei neue Anweisungen, die Sie beachten müssen:
 
-Die do()Anweisung aktiviert zukünftige mulAnweisungen.
-Die don't()Anweisung deaktiviert zukünftige mulAnweisungen.
-Es gilt immer nur die aktuellste do() oder letzte don't()Anweisung. Zu Beginn des Programms mulsind die Anweisungen aktiviert .
+Die do() Anweisung aktiviert zukünftige mul Anweisungen.
+Die don't() Anweisung deaktiviert zukünftige mul Anweisungen.
+Nur die letzte do() oder don't() Anweisung gilt. Zu Beginn des Programms sind die Mul-Befehle aktiviert.
 
 Zum Beispiel:
 
 xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))
-Dieser beschädigte Speicher ähnelt dem vorherigen Beispiel, aber dieses Mal sind die Befehle mul(5,5)und deaktiviert , da vor ihnen ein Befehl steht . Die anderen Befehle funktionieren normal, einschließlich des Befehls am Ende, der durch einen Befehl wieder aktiviert wird .mul(11,8)don't()muldo()
+Dieser beschädigte Speicher ähnelt dem Beispiel von vorhin, aber dieses Mal sind die Anweisungen mul(5,5) und mul(11,8) deaktiviert, weil ihnen eine don't()-Anweisung vorausgeht. Die anderen mul-Befehle funktionieren normal, einschließlich des Befehls am Ende, der durch einen do()-Befehl wieder aktiviert wird.
 
 Dieses Mal ist die Summe der Ergebnisse 48( 2*4 + 8*5).
 
