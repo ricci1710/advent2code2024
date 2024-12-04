@@ -18,7 +18,14 @@ export class Day02 extends DayBase {
    */
   reportsAreSave(reportNumbers: number[]): { unsave: boolean, correctReports: CorrectReports } {
     const length = reportNumbers.length;
-    const increaseLevel: boolean = reportNumbers[0] < reportNumbers[1];
+
+    let increaseLevel: number = 0;
+    for (let i = 0; i < 3; i++) {
+      if (reportNumbers[i] < reportNumbers[i + 1])
+        increaseLevel += 1;
+      else if (reportNumbers[i] > reportNumbers[i + 1])
+        increaseLevel -= 1;
+    }
 
     let i;
     let correctReports: CorrectReports = {one: [], two: []};
@@ -28,7 +35,7 @@ export class Day02 extends DayBase {
       const currentNumber = reportNumbers[i];
       const nextNumber = reportNumbers[i + 1];
 
-      const dist = currentNumber - nextNumber;
+      const dist = nextNumber - currentNumber;
       // Any two adjacent levels differ by at least one and at most three.
       if (dist === 0) {
         unsave = true;
@@ -43,14 +50,14 @@ export class Day02 extends DayBase {
       }
 
       // levels are either all increasing
-      if (dist > 0 && increaseLevel) {
+      if (dist > 0 && increaseLevel < 0) {
         unsave = true;
         correctReports = this.getCorrectReports(i, reportNumbers);
         break;
       }
 
       //  levels are either all decreasing
-      if (dist < 0 && !increaseLevel) {
+      if (dist < 0 && increaseLevel > 0) {
         unsave = true;
         correctReports = this.getCorrectReports(i, reportNumbers);
         break;
@@ -77,7 +84,7 @@ export class Day02 extends DayBase {
   }
 
   /**
-   * solution: 283 => to low, 312 => to height (291)
+   * solution: 283 => to low, 312 => to height (291) => 296
    */
   calcPartTwo(): number {
     const storeData: string[] = this.getStoreData();
@@ -88,10 +95,10 @@ export class Day02 extends DayBase {
       const reportNumbers = row.split(' ').map(item => parseInt(item, 10));
       const {unsave, correctReports} = this.reportsAreSave(reportNumbers)
 
-      if (unsave && correctReports) {
+      if (unsave) {
         unsaveReports.push(correctReports);
       } else
-        saveReports += unsave ? 0 : 1;
+        saveReports += 1;
     });
 
     unsaveReports.forEach(item => {
