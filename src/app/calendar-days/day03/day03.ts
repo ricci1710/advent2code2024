@@ -30,25 +30,14 @@ export class Day03 extends DayBase {
   }
 
   /**
-   * 83198917 to high
+   * 82733683
    */
   calcPartTwo(): number {
     const storeData: string[] = this.getStoreData();
-    let data: string = '';
+    let data: string = 'do()';
     storeData.forEach(item => data += item);
 
     let sum = 0;
-    // data: string = 'xmul(2,4)&mul[3,7]!^don\'t()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))xmul(2,4)&mul[3,7]!^don\'t()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))';
-    const regex = /(mul\((\d{1,3}),(\d{1,3})\))/;
-    const regExpExecArray: RegExpExecArray | null = regex.exec(data);
-
-    if (regExpExecArray) {
-      const factor1: number = parseInt(regExpExecArray[2], 10);
-      const factor2: number = parseInt(regExpExecArray[3], 10);
-
-      sum += (factor1 * factor2);
-    }
-
     let startPos = 0;
     let endPos = 0;
     let position: Pair[] = [];
@@ -57,8 +46,9 @@ export class Day03 extends DayBase {
       startPos = data.indexOf('do()', endPos);
       endPos = data.indexOf('don\'t()', startPos);
 
-      position.push({first: startPos, second: endPos});
-      console.log(data.substring(startPos, endPos === -1 ? undefined : endPos));
+      if (startPos > -1)
+        position.push({first: startPos, second: endPos});
+
     } while (endPos !== -1 && startPos !== -1);
 
     const regexDo = /(mul\((\d{1,3}),(\d{1,3})\))/gm;
@@ -66,9 +56,9 @@ export class Day03 extends DayBase {
       const text = data.substring(item.first, item.second === -1 ? undefined : item.second);
       const regExpMatchArray: RegExpMatchArray[] = [...text.matchAll(regexDo)];
 
-      regExpMatchArray.forEach(item => {
-        const factor1: number = parseInt(item[2], 10);
-        const factor2: number = parseInt(item[3], 10);
+      regExpMatchArray.forEach(item1 => {
+        const factor1: number = parseInt(item1[2], 10);
+        const factor2: number = parseInt(item1[3], 10);
 
         sum += (factor1 * factor2);
       });
