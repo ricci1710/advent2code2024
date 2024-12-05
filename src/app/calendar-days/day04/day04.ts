@@ -49,6 +49,13 @@ export class Day04 extends DayBase {
     return this.findInRow(Array.from(matrix.values()));
   }
 
+  /**
+   * Scans a given array of strings and extracts diagonal sequences of characters
+   * starting from the top-left to the bottom-right in a character matrix.
+   *
+   * @param storeData an array of strings where each string represents a row of the character matrix.
+   * @return an array of strings that match the diagonal sequence pattern "XMAS" found in the character matrix.
+   */
   findTlBr(storeData: string[]) {
     const matrix: string[] = [];
     const charMap = new Map<number, string[]>();
@@ -111,6 +118,16 @@ export class Day04 extends DayBase {
     return this.findInRow(matrix)
   }
 
+  /**
+   * Analyzes the given array of strings to find specific diagonal patterns ('MAS' or 'SAM')
+   * in both left-to-right and right-to-left directions, and calculates a sum based on
+   * intersections of these patterns.
+   *
+   * @param storeData The array of strings to be analyzed. Each string represents a row
+   *                  of characters.
+   * @return The sum of the number of intersecting patterns ('MAS' or 'SAM') found in
+   *         both left-to-right and right-to-left diagonals.
+   */
   private findTlBrP2(storeData: string[]) {
     const matrixLR: Map<number, number[]> = new Map();
     const matrixRL: Map<number, number[]> = new Map();
