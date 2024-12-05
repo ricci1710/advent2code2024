@@ -50,7 +50,7 @@ Schauen Sie sich das Wortsuchrätsel des kleinen Elfs an. Wie oft XMAS kommt es 
 
 Der Elf sieht dich fragend an. Hast du die Aufgabe falsch verstanden?
 
-Auf der Suche nach den Anweisungen blättern Sie das Wortsuchrätsel um und stellen fest, dass es sich hier nicht um ein XMASPuzzle handelt. Es ist ein Puzzle, bei dem Sie zwei in der Form eines X-MASfinden sollen . Eine Möglichkeit, dies zu erreichen, ist folgende:MASX
+Auf der Suche nach den Anweisungen blättern Sie das Wortsuchrätsel um und stellen fest, dass es sich hier nicht um ein XMAS Puzzle handelt. Es ist ein Puzzle, bei dem Sie zwei in der Form eines X-MAS finden sollen. Eine Möglichkeit, dies zu erreichen, ist folgende: MASX
 
 ```
 M.S
@@ -58,9 +58,9 @@ M.S
 M.S
 ```
 
-.Im obigen Diagramm wurden irrelevante Zeichen wieder durch ersetzt . Innerhalb des kann X jedes MAS vorwärts oder rückwärts geschrieben werden.
+Im obigen Diagramm wurden irrelevante Zeichen wieder durch ersetzt. Innerhalb des kann X jedes MAS vorwärts oder rückwärts geschrieben werden.
 
-X-MAS Hier ist das gleiche Beispiel wie zuvor, aber dieses Mal wurden stattdessen alle „ es“ beibehalten:
+X-MAS. Hier ist das gleiche Beispiel wie zuvor, aber dieses Mal wurden stattdessen alle X-MASes beibehalten:
 
 ```
 .M.S......
