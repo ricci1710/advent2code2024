@@ -45,3 +45,36 @@ S.S.S.S.SS
 ```
 
 Schauen Sie sich das Wortsuchrätsel des kleinen Elfs an. Wie oft XMAS kommt es vor?
+
+**--- Teil Zwei ---**
+
+Der Elf sieht dich fragend an. Hast du die Aufgabe falsch verstanden?
+
+Auf der Suche nach den Anweisungen blättern Sie das Wortsuchrätsel um und stellen fest, dass es sich hier nicht um ein XMASPuzzle handelt. Es ist ein Puzzle, bei dem Sie zwei in der Form eines X-MASfinden sollen . Eine Möglichkeit, dies zu erreichen, ist folgende:MASX
+
+```
+M.S
+.A.
+M.S
+```
+
+.Im obigen Diagramm wurden irrelevante Zeichen wieder durch ersetzt . Innerhalb des kann X jedes MAS vorwärts oder rückwärts geschrieben werden.
+
+X-MAS Hier ist das gleiche Beispiel wie zuvor, aber dieses Mal wurden stattdessen alle „ es“ beibehalten:
+
+```
+.M.S......
+..A..MSMS.
+.M.S.MAA..
+..A.ASMSM.
+.M.S.M....
+..........
+S.S.S.S.S.
+.A.A.A.A..
+M.M.M.M.M.
+..........
+```
+
+In diesem Beispiel X-MAS kommt ein **9 Mal** vor.
+
+Drehen Sie das Wortsuchrätsel aus der Anleitung zurück auf die Wortsuchseite und versuchen Sie es erneut. Wie oft kommt ein X-MAS vor?

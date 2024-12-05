@@ -10,13 +10,9 @@ export class Day04 extends DayBase {
 
     let sum = 0;
     sum += this.findInRow(storeData);
-    console.log(this.findInRow(storeData));
     sum += this.findInColumn(storeData);
-    console.log(this.findInColumn(storeData));
     sum += this.findTlBr(storeData);
-    console.log(this.findTlBr(storeData));
     sum += this.findTrBl(storeData);
-    console.log(this.findTrBl(storeData));
 
     return sum;
   }
@@ -63,24 +59,30 @@ export class Day04 extends DayBase {
     }
 
     const colLength: number = charMap.get(0)?.length ?? 0;
-    const rowLength: number = charMap.size - 'XMAS'.length;
+    const rowLength: number = charMap.size;
 
     for (let rowIdx = 0; rowIdx < rowLength; rowIdx++) {
       for (let colIdx = 0; colIdx < colLength; colIdx++) {
-        const char0 = (charMap.get(rowIdx) as string[])[colIdx] ?? '';
-        const char1 = (charMap.get(rowIdx + 1) as string[])[colIdx + 1] ?? '';
-        const char2 = (charMap.get(rowIdx + 2) as string[])[colIdx + 2] ?? '';
-        const char3 = (charMap.get(rowIdx + 3) as string[])[colIdx + 3] ?? '';
+        const char0 = this.getChar(rowIdx, colIdx, charMap);
+        const char1 = this.getChar(rowIdx + 1, colIdx + 1, charMap);
+        const char2 = this.getChar(rowIdx + 2, colIdx + 2, charMap);
+        const char3 = this.getChar(rowIdx + 3, colIdx + 3, charMap);
 
-        const txt = char0 + char1  + char2 + char3;
+        const txt = char0 + char1 + char2 + char3;
         if (txt.length === 'XMAS'.length)
           matrix.push(txt);
       }
     }
 
-    console.log(matrix);
-
     return this.findInRow(matrix)
+  }
+
+  getChar(rowIdx: number, colIdx: number, charMap: Map<number, string[]>): string {
+    let char: string = '';
+    const row = charMap.get(rowIdx);
+    if (row)
+      char = row[colIdx] ?? '';
+    return char;
   }
 
   findTrBl(storeData: string[]) {
@@ -92,22 +94,20 @@ export class Day04 extends DayBase {
     }
 
     const colLength: number = charMap.get(0)?.length ?? 0;
-    const rowLength: number = charMap.size - 'XMAS'.length;
+    const rowLength: number = charMap.size;
 
     for (let rowIdx = 0; rowIdx < rowLength; rowIdx++) {
       for (let colIdx = 0; colIdx < colLength; colIdx++) {
-        const char0 = (charMap.get(rowIdx) as string[])[colIdx] ?? '';
-        const char1 = (charMap.get(rowIdx + 1) as string[])[colIdx - 1] ?? '';
-        const char2 = (charMap.get(rowIdx + 2) as string[])[colIdx - 2] ?? '';
-        const char3 = (charMap.get(rowIdx + 3) as string[])[colIdx - 3] ?? '';
+        const char0 = this.getChar(rowIdx, colIdx, charMap);
+        const char1 = this.getChar(rowIdx + 1, colIdx - 1, charMap);
+        const char2 = this.getChar(rowIdx + 2, colIdx - 2, charMap);
+        const char3 = this.getChar(rowIdx + 3, colIdx - 3, charMap);
 
-        const txt = char0 + char1  + char2 + char3;
+        const txt = char0 + char1 + char2 + char3;
         if (txt.length === 'XMAS'.length)
           matrix.push(txt);
       }
     }
-
-    console.log(matrix);
 
     return this.findInRow(matrix)
   }
