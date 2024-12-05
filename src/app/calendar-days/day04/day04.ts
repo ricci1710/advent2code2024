@@ -1,14 +1,9 @@
 import {DayBase} from "../../utlils/DayBase";
 
-type Position = {
-  row: number;
-  col: number;
-};
-
 export class Day04 extends DayBase {
   /**
    *
-   * solution: ???
+   * 2554
    */
   calcPartOne(): number {
     const storeData: string[] = this.getStoreData();
@@ -23,18 +18,10 @@ export class Day04 extends DayBase {
   }
 
   /**
-   * solution: ???
+   * 1916
    */
   calcPartTwo(): number {
-    const storeData: string[] = this.getStoreData();
-
-    let sum = 0;
-    // sum += this.findInRowP2(storeData);
-    // sum += this.findInColumnP2(storeData);
-    sum += this.findTlBrP2(storeData);
-    // sum += this.findTrBl(storeData);
-
-    return sum;
+    return this.findTlBrP2(this.getStoreData());
   }
 
   private findInRow(storeData: string[]) {
