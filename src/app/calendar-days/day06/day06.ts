@@ -5,11 +5,6 @@ type Position = { row: number; col: number };
 export class Day06 extends DayBase {
   position: Position = {row: 0, col: 0};
 
-  override init() {
-    super.init();
-    this.findStartPos();
-  }
-
   findStartPos() {
     const storeData: string[] = this.getStoreData();
 
@@ -23,7 +18,6 @@ export class Day06 extends DayBase {
       this.position.col = colIdx;
       break;
     }
-    console.log(this.position);
   }
 
   /**
@@ -31,6 +25,9 @@ export class Day06 extends DayBase {
    */
   calcPartOne(): number {
     const storeData: string[] = this.getStoreData();
+    this.findStartPos();
+
+
     return -1;
   }
 

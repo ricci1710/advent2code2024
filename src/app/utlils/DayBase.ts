@@ -12,7 +12,6 @@ export abstract class DayBase {
     return this.httpClient.request('GET', url, {responseType: 'text'}).subscribe(res => {
       this.storeData = res.replaceAll('\r', '').split('\n');
       this.storeData.pop();
-      this.init();
     });
   }
 
@@ -21,12 +20,8 @@ export abstract class DayBase {
     return this.httpClient.request('GET', url, {responseType: 'text'}).subscribe(res => {
       this.storeData = res.replaceAll('\r', '').split('\n');
       this.storeData.pop();
-      this.init();
     });
   }
-
-  init(): void {
-  };
 
   abstract calcPartOne(storeData: string[]): number;
 
