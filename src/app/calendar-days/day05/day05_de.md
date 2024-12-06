@@ -83,3 +83,20 @@ Natürlich müssen Sie vorsichtig sein: Die tatsächliche Liste der Regeln für 
 
 Stellen Sie fest, welche Aktualisierungen sich bereits in der richtigen Reihenfolge befinden.
 Was erhalten Sie, wenn Sie die mittlere Seitenzahl der korrekt geordneten Aktualisierungen zusammenzählen?
+
+--- Zweiter Teil ---
+
+Während sich die Elfen an die Arbeit machen, die korrekt angeordneten Aktualisierungen zu drucken, haben Sie ein wenig Zeit, um die restlichen Aktualisierungen
+zu korrigieren. Verwenden Sie für jede der falsch angeordneten Aktualisierungen die Regeln für die Seitenanordnung, um die Seitenzahlen in die richtige
+Reihenfolge zu bringen.
+Für das obige Beispiel sind hier die drei falsch geordneten Aktualisierungen und ihre korrekte Reihenfolge:
+
+```
+- 75,97,47,61,53 wird zu 97,75,47,61,53. 
+- 61,13,29 wird zu 61,29,13. 
+- 97,13,75,29,47 wird zu 97,75,47,29,13.
+```
+
+Nachdem Sie nur die falsch geordneten Aktualisierungen in die richtige Reihenfolge gebracht haben, sind ihre mittleren Seitenzahlen 47, 29 und 47.
+Wenn man diese addiert, erhält man **123**. Finden Sie die Aktualisierungen, die nicht in der richtigen Reihenfolge sind. Was erhalten Sie, wenn Sie die
+mittleren Seitenzahlen zusammenzählen, nachdem Sie nur diese Aktualisierungen richtig geordnet haben?

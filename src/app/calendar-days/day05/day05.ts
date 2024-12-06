@@ -5,6 +5,11 @@ type PageData = {
   pageMapper: number[][];
 };
 
+type PageResult = {
+  correctlyOrdered: number[][];
+  inCorrectlyOrdered: number[][];
+};
+
 export class Day05 extends DayBase {
   /**
    * 5651
@@ -13,11 +18,11 @@ export class Day05 extends DayBase {
     const storeData: string[] = this.getStoreData();
     const pageData: PageData = this.scan(storeData);
 
-    const forward: number[][] = this.calcForward(pageData);
-    const backward: number[][] = this.calcBackward(forward, pageData.ruleMapper);
+    const forward: PageResult = this.calcForward(pageData);
+    const backward: PageResult = this.calcBackward(forward, pageData.ruleMapper);
 
     let sum = 0;
-    backward.forEach((item) => {
+    backward.correctlyOrdered.forEach((item) => {
       const middle = Math.floor(item.length * 0.5);
       sum += item[middle];
     });
@@ -26,11 +31,33 @@ export class Day05 extends DayBase {
   }
 
   /**
-   * solution: ???
+   * solution: 4743
    */
   calcPartTwo(): number {
     const storeData: string[] = this.getStoreData();
-    return -1;
+    const pageData: PageData = this.scan(storeData);
+
+    const forward: PageResult = this.calcForward(pageData);
+    const backward: PageResult = this.calcBackward(forward, pageData.ruleMapper);
+
+    backward.inCorrectlyOrdered.forEach((item) => {
+      item.sort((a, b) => {
+        const rules = pageData.ruleMapper.get(b);
+        let found = false;
+        if (rules) {
+          found = rules.includes(a);
+        }
+        return found ? 1 : -1;
+      });
+    });
+
+    let sum = 0;
+    backward.inCorrectlyOrdered.forEach((item) => {
+      const middle = Math.floor(item.length * 0.5);
+      sum += item[middle];
+    });
+
+    return sum;
   }
 
   private scan(storeData: string[]): PageData {
@@ -58,10 +85,12 @@ export class Day05 extends DayBase {
     return {ruleMapper, pageMapper};
   }
 
-  private calcForward(pageData: PageData): number[][] {
+  private calcForward(pageData: PageData): PageResult {
     const {ruleMapper, pageMapper} = pageData;
 
-    const result: number[][] = [];
+    const resultOk: number[][] = [];
+    const resultNOk: number[][] = [];
+
     pageMapper.forEach((item) => {
       let correctRuleset = true;
       for (let i = 0; i < item.length; i++) {
@@ -77,21 +106,25 @@ export class Day05 extends DayBase {
         }
       }
       if (correctRuleset) {
-        result.push(item);
+        resultOk.push(item);
+      } else {
+        resultNOk.push(item);
       }
     });
 
-    return result;
+    return {correctlyOrdered: resultOk, inCorrectlyOrdered: resultNOk};
   }
 
-  private calcBackward(forward: number[][], ruleMapper: Map<number, number[]>): number[][] {
+  private calcBackward(forward: PageResult, ruleMapper: Map<number, number[]>): PageResult {
     const reversedPageMapper: number[][] = [];
-    forward.forEach((item) => {
+    forward.correctlyOrdered.forEach((item) => {
       const reverse = [...item].reverse();
       reversedPageMapper.push(reverse);
     })
 
-    const result: number[][] = [];
+    const resultOk: number[][] = [];
+    const resultNOk: number[][] = forward.inCorrectlyOrdered;
+
     reversedPageMapper.forEach((item) => {
       let correctRuleset = true;
       for (let i = 0; i < item.length; i++) {
@@ -107,10 +140,12 @@ export class Day05 extends DayBase {
         }
       }
       if (correctRuleset) {
-        result.push(item.reverse());
+        resultOk.push(item.reverse());
+      } else {
+        resultNOk.push(item.reverse());
       }
     });
 
-    return result;
+    return {correctlyOrdered: resultOk, inCorrectlyOrdered: resultNOk};
   }
 }
