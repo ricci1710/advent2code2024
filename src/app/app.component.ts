@@ -21,12 +21,12 @@ export class AppComponent {
   calculateDay01() {
     const day = new Day06(6, this.httpClient)
     day.readDemoData().add(() => {
-      this.resultPartOne = day.calcPartOne();
+      // this.resultPartOne = day.calcPartOne();
       // this.resultPartTwo = day.calcPartTwo();
     })
 
     day.readPrivateData().add(() => {
-      // this.resultPartOne = day.calcPartOne();
+      this.resultPartOne = day.calcPartOne();
       // this.resultPartTwo = day.calcPartTwo();
     })
   }
