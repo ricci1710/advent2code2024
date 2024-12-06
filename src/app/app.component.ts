@@ -26,7 +26,7 @@ export class AppComponent {
     })
 
     day.readPrivateData().add(() => {
-      //this.resultPartOne = day.calcPartOne();
+      this.resultPartOne = day.calcPartOne();
       //this.resultPartTwo = day.calcPartTwo();
     })
   }

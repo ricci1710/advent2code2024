@@ -7,14 +7,22 @@ type PageData = {
 
 export class Day05 extends DayBase {
   /**
-   *
-   * solution: ???
+   * 5651
    */
   calcPartOne(): number {
     const storeData: string[] = this.getStoreData();
     const pageData: PageData = this.scan(storeData);
 
-    return this.calc(pageData);
+    const forward: number[][] = this.calcForward(pageData);
+    const backward: number[][] = this.calcBackward(forward, pageData.ruleMapper);
+
+    let sum = 0;
+    backward.forEach((item) => {
+      const middle = Math.floor(item.length * 0.5);
+      sum += item[middle];
+    });
+
+    return sum;
   }
 
   /**
@@ -50,11 +58,10 @@ export class Day05 extends DayBase {
     return {ruleMapper, pageMapper};
   }
 
-  private calc(pageData: PageData): number {
+  private calcForward(pageData: PageData): number[][] {
     const {ruleMapper, pageMapper} = pageData;
 
     const result: number[][] = [];
-
     pageMapper.forEach((item) => {
       let correctRuleset = true;
       for (let i = 0; i < item.length; i++) {
@@ -74,7 +81,36 @@ export class Day05 extends DayBase {
       }
     });
 
-    console.log(result);
-    return -10
+    return result;
+  }
+
+  private calcBackward(forward: number[][], ruleMapper: Map<number, number[]>): number[][] {
+    const reversedPageMapper: number[][] = [];
+    forward.forEach((item) => {
+      const reverse = [...item].reverse();
+      reversedPageMapper.push(reverse);
+    })
+
+    const result: number[][] = [];
+    reversedPageMapper.forEach((item) => {
+      let correctRuleset = true;
+      for (let i = 0; i < item.length; i++) {
+        const pageNumber: number = item[i];
+        const rule = ruleMapper.get(pageNumber);
+        if (rule) {
+          for (let j = i + 1; j < item.length; j++) {
+            const behindPage: number = item[j];
+            if (rule.includes(behindPage)) {
+              correctRuleset = false;
+            }
+          }
+        }
+      }
+      if (correctRuleset) {
+        result.push(item.reverse());
+      }
+    });
+
+    return result;
   }
 }
