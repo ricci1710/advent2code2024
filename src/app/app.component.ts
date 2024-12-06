@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {DayComponent} from "./day/day.component";
 import {DayCardComponent} from "./calendar/day-card/day-card.component";
-import {Day05} from "./calendar-days/day05/day05";
+import {Day06} from "./calendar-days/day06/day06";
 
 @Component({
   selector: 'app-root',
@@ -19,15 +19,15 @@ export class AppComponent {
   }
 
   calculateDay01() {
-    const day = new Day05(5, this.httpClient)
+    const day = new Day06(6, this.httpClient)
     day.readDemoData().add(() => {
       this.resultPartOne = day.calcPartOne();
-      this.resultPartTwo = day.calcPartTwo();
+      // this.resultPartTwo = day.calcPartTwo();
     })
 
     day.readPrivateData().add(() => {
-      this.resultPartOne = day.calcPartOne();
-      this.resultPartTwo = day.calcPartTwo();
+      // this.resultPartOne = day.calcPartOne();
+      // this.resultPartTwo = day.calcPartTwo();
     })
   }
 
