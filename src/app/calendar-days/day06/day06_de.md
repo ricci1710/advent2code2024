@@ -105,3 +105,111 @@ Indem Sie die Route des Wachmanns vorhersagen, können Sie bestimmen, welche bes
 In diesem Beispiel wird der Wachmann 41 verschiedene Positionen auf Ihrer Karte besuchen.
 
 Sagen Sie den Weg des Wachmanns voraus. Wie viele verschiedene Positionen wird der Wachmann besuchen, bevor er den kartierten Bereich verlässt?
+
+**--- Zweiter Teil ---**
+
+Während die Historiker damit beginnen, die Patrouillenroute der Wächter zu umgehen, leihst du dir ihr schickes Gerät aus und gehst aus dem Labor. In der Sicherheit eines Vorratsschranks machst du eine Zeitreise durch die letzten Monate und notierst den nächtlichen Status des Wachpostens im Labor an den Wänden des Schranks.
+
+Als Sie nach scheinbar nur wenigen Sekunden zu den Historikern zurückkehren, erklären diese, dass der Patrouillenbereich der Wache einfach zu groß ist, um das Labor sicher zu durchsuchen, ohne erwischt zu werden.
+
+Glücklicherweise sind sie ziemlich sicher, dass das Hinzufügen eines einzigen neuen Hindernisses kein Zeitparadoxon verursachen wird. Sie möchten das neue Hindernis so platzieren, dass der Wachmann in einer Schleife stecken bleibt und der Rest des Labors sicher durchsucht werden kann.
+
+Um die Wahrscheinlichkeit eines Zeitparadoxons so gering wie möglich zu halten, möchten die Historiker alle möglichen Positionen für ein solches Hindernis kennen. Das neue Hindernis kann nicht an der Ausgangsposition des Wächters platziert werden - der Wächter ist gerade dort und würde es bemerken.
+
+Im obigen Beispiel gibt es nur 6 verschiedene Positionen, an denen ein neues Hindernis dazu führen würde, dass der Wächter in einer Schleife stecken bleibt. In den Diagrammen dieser sechs Situationen wird O verwendet, um das neue Hindernis zu markieren, |, um eine Position anzuzeigen, in der sich der Wächter nach oben/unten bewegt, -, um eine Position anzuzeigen, in der sich der Wächter nach links/rechts bewegt, und +, um eine Position anzuzeigen, in der sich der Wächter sowohl nach oben/unten als auch nach links/rechts bewegt.
+
+Option eins: Setzen Sie eine Drucktaste neben die Ausgangsposition des Wächters:
+
+```
+....#.....
+....+---+#
+....|...|.
+..#.|...|.
+....|..#|.
+....|...|.
+.#.O^---+.
+........#.
+#.........
+......#...
+```
+
+Option zwei: Legen Sie einen Stapel gescheiterter Anzugprototypen in den unteren rechten Quadranten des zugewiesenen Bereichs:
+
+```
+....#.....
+....+---+#
+....|...|.
+..#.|...|.
+..+-+-+#|.
+..|.|.|.|.
+.#+-^-+-+.
+......O.#.
+#.........
+......#...
+```
+
+Option drei: Stellen Sie eine Kiste mit dem Prototyp eines Schornsteinfegers neben den Stehpult im unteren rechten Quadranten:
+
+```
+....#.....
+....+---+#
+....|...|.
+..#.|...|.
+..+-+-+#|.
+..|.|.|.|.
+.#+-^-+-+.
+.+----+O#.
+#+----+...
+......#...
+```
+
+Option vier, ein alchemistischer Retroencabulator in der unteren linken Ecke:
+
+```
+....#.....
+....+---+#
+....|...|.
+..#.|...|.
+..+-+-+#|.
+..|.|.|.|.
+.#+-^-+-+.
+..|...|.#.
+#O+---+...
+......#...
+```
+
+Option fünf: Der alchemistische Retroencabulator wird etwas nach rechts verschoben:
+
+```
+....#.....
+....+---+#
+....|...|.
+..#.|...|.
+..+-+-+#|.
+..|.|.|.|.
+.#+-^-+-+.
+....|.|.#.
+#..O+-+...
+......#...
+```
+
+Option sechs: Stellen Sie einen Tank mit souveränem Klebstoff direkt neben den Tank mit Universal-Lösungsmittel:
+
+```
+....#.....
+....+---+#
+....|...|.
+..#.|...|.
+..+-+-+#|.
+..|.|.|.|.
+.#+-^-+-+.
+.+----++#.
+#+----++..
+......#O..
+```
+
+Es ist eigentlich egal, was du als Hindernis verwendest, solange du und die Historiker es in Position bringen können, ohne dass die Wache es bemerkt.
+Wichtig ist, dass du genug Möglichkeiten hast, um eine zu finden, die die Zeitparadoxien minimiert, und in diesem Beispiel gibt es **6** verschiedene Positionen,
+die du wählen kannst.
+
+Sie müssen die Wache in eine Schleife bringen, indem Sie ein einziges neues Hindernis hinzufügen. Wie viele verschiedene Positionen könnten Sie für dieses Hindernis wählen?

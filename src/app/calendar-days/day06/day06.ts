@@ -4,7 +4,9 @@ type Position = { row: number; col: number };
 
 export class Day06 extends DayBase {
   position: Position = {row: 0, col: 0};
+  backsidePosition: string[] = []; // l= left, u=ip, d=down, r=right
   path: Map<number, Set<number>> = new Map();
+  loopCounter = 0;
 
   /**
    * Finds the starting position in a stored data grid, identified by the character '^'.
@@ -32,7 +34,7 @@ export class Day06 extends DayBase {
   };
 
   /**
-   * Calculates the total size of all elements in the path.
+   * Calculates the total size of all elements in the path. (4602)
    *
    * This method performs the following steps:
    * - Retrieves store data.
@@ -65,15 +67,21 @@ export class Day06 extends DayBase {
    */
   up(storeData: string[]): void {
     if (this.position.row > 0) {
-      const nextChar =storeData[this.position.row - 1][this.position.col];
-      if (nextChar !== '#') {
+      const nextChar: string = storeData[this.position.row - 1][this.position.col];
+      if (nextChar !== '#' && nextChar !== 'o') {
         this.position.row--;
         this.writePath();
         this.up(storeData);
-      }
-      else {
+      } else {
         // rotate 90° clockwise
-        this.right(storeData);
+        if (nextChar === '#') {
+          this.right(storeData);
+        } else if (nextChar === 'o' && this.backsidePosition.indexOf('u') === -1) {
+          this.backsidePosition.push('u');
+          this.right(storeData);
+        } else {
+          this.loopCounter += 1;
+        }
       }
     }
   }
@@ -87,15 +95,22 @@ export class Day06 extends DayBase {
    * @return {void} Does not return a value.
    */
   right(storeData: string[]): void {
-    if (this.position.col < storeData[0].length-1) {
+    if (this.position.col < storeData[0].length - 1) {
       const nextChar = storeData[this.position.row][this.position.col + 1];
-      if (nextChar !== '#') {
+      if (nextChar !== '#' && nextChar !== 'o') {
         this.position.col += 1;
         this.writePath();
         this.right(storeData);
       } else {
         // rotate 90° clockwise
-        this.down(storeData);
+        if (nextChar === '#') {
+          this.down(storeData);
+        } else if (nextChar === 'o' && this.backsidePosition.indexOf('r') === -1) {
+          this.backsidePosition.push('r');
+          this.down(storeData);
+        } else {
+          this.loopCounter += 1;
+        }
       }
     }
   }
@@ -111,16 +126,22 @@ export class Day06 extends DayBase {
    * @return {void} This method does not return a value.
    */
   down(storeData: string[]): void {
-    if (this.position.row < storeData.length-1) {
-      const nextChar =storeData[this.position.row + 1][this.position.col];
-      if (nextChar !== '#') {
-        this.position.row+=1;
+    if (this.position.row < storeData.length - 1) {
+      const nextChar = storeData[this.position.row + 1][this.position.col];
+      if (nextChar !== '#' && nextChar !== 'o') {
+        this.position.row += 1;
         this.writePath();
         this.down(storeData);
-      }
-      else {
+      } else {
         // rotate 90° clockwise
-        this.left(storeData);
+        if (nextChar === '#') {
+          this.left(storeData);
+        } else if (nextChar === 'o' && this.backsidePosition.indexOf('d') === -1) {
+          this.backsidePosition.push('d');
+          this.left(storeData);
+        } else {
+          this.loopCounter += 1;
+        }
       }
     }
   }
@@ -136,13 +157,20 @@ export class Day06 extends DayBase {
   left(storeData: string[]): void {
     if (this.position.col > 0) {
       const nextChar = storeData[this.position.row][this.position.col - 1];
-      if (nextChar !== '#') {
+      if (nextChar !== '#' && nextChar !== 'o') {
         this.position.col -= 1;
         this.writePath();
         this.left(storeData);
       } else {
         // rotate 90° clockwise
-        this.up(storeData);
+        if (nextChar === '#') {
+          this.up(storeData);
+        } else if (nextChar === 'o' && this.backsidePosition.indexOf('l') === -1) {
+          this.backsidePosition.push('l');
+          this.up(storeData);
+        } else {
+          this.loopCounter += 1;
+        }
       }
     }
   }
@@ -151,8 +179,44 @@ export class Day06 extends DayBase {
    * solution: ???
    */
   calcPartTwo(): number {
-    const storeData: string[] = this.getStoreData();
-    return -1;
+    // get all positions from the guard
+    this.calcPartOne();
+    const positions = this.convertPositionsInFlatVector();
+    let count = 0;
+    positions.forEach(position => {
+      count++;
+      console.log(count, new Date().getTime());
+
+      if (count === 34)
+        console.log(position);
+      const data: string[] = this.updateStoreData(position);
+      this.findStartPos();
+      this.backsidePosition = [];
+      this.up(data);
+    });
+
+    return this.loopCounter;
+  }
+
+  updateStoreData(position: Position): string[] {
+    const data: string[] = [...this.storeData];
+    const line: string = data[position.row];
+
+    data[position.row] = replaceCharAtPosition(line, position.col, 'o');
+    return data;
+  }
+
+  convertPositionsInFlatVector(): Position[] {
+    const positions: Position[] = [];
+
+    for (const [rowIdx, value] of this.path) {
+      const linePos = Array.from(this.path.get(rowIdx) ?? []);
+      linePos.forEach((colIdx) => {
+        positions.push({row: rowIdx, col: colIdx});
+      })
+    }
+
+    return positions;
   }
 
   /**
@@ -171,4 +235,11 @@ export class Day06 extends DayBase {
     row.add(this.position.col);
     this.path.set(this.position.row, row);
   }
+}
+
+function replaceCharAtPosition(str: string, idx: number, newChar: string): string {
+  if (idx < 0 || idx >= str.length) {
+    throw new Error("Index out of bounds");
+  }
+  return str.substring(0, idx) + newChar + str.substring(idx + 1);
 }
