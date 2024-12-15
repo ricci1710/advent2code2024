@@ -8,7 +8,7 @@ export abstract class DayBase {
   }
 
   readDemoData(): Subscription {
-    const url: string = '/assets/demo/day0' + this.day.toString() + '.dat';
+    const url = `/assets/demo/day${this.day < 10 ? '0' : ''}${this.day}.dat`;
     return this.httpClient.request('GET', url, {responseType: 'text'}).subscribe(res => {
       this.storeData = res.replaceAll('\r', '').split('\n');
       this.storeData.pop();
@@ -16,7 +16,7 @@ export abstract class DayBase {
   }
 
   readPrivateData() {
-    const url: string = '/assets/private/day0' + this.day.toString() + '.dat';
+    const url = `/assets/private/day${this.day < 10 ? '0' : ''}${this.day}.dat`;
     return this.httpClient.request('GET', url, {responseType: 'text'}).subscribe(res => {
       this.storeData = res.replaceAll('\r', '').split('\n');
       this.storeData.pop();

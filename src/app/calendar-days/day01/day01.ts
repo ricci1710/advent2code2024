@@ -1,5 +1,9 @@
 import {DayBase} from "../../utlils/DayBase";
 
+/**
+ * Represents the implementation of Day 01 challenge, extending the DayBase class.
+ * It provides methods to generate lists from input data and calculate solutions for parts one and two.
+ */
 export class Day01 extends DayBase {
 
   generateList(): { list1: number[], list2: number[] } {

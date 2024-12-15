@@ -30,7 +30,7 @@ export class Day09 extends DayBase {
 
       if (count % 100)
         console.log(count);
-      
+
     } while (hddBlocks.includes('.'))
 
     const convHddBlocks: number[] = [...hddBlocks].map(item => parseInt(item, 10));
@@ -74,6 +74,7 @@ export class Day09 extends DayBase {
    */
   calcPartTwo(): number {
     const storeData: string[] = this.getStoreData();
+
     return -1;
   }
 }
