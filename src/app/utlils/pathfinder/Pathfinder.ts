@@ -1,14 +1,16 @@
 /**
  * Explanation of the Algorithm
- * The A* algorithm uses both the actual distance traveled (costs so far) and a heuristic (estimated distance to the target) to find the shortest path in an optimal manner. Here's how the algorithm will work:
+ * The A* algorithm uses both the actual distance traveled (costs so far) and a heuristic (estimated distance to the
+ * target) to find the shortest path in an optimal manner. Here's how the algorithm will work:
  * 1. **Input**: The 2D array/grid where:
- *   - `S` is the starting point.
+ * - `S` is the starting point.
  * - `E` is the ending point.
  * - `#` represents walls.
  * - Open cells are navigable.
  *
  * 2. **Output**: The shortest path length. Optionally, we can also retrieve the path itself.
- * 3. **Heuristic**: We'll use the Manhattan distance as the heuristic, which is suitable for this type of grid-based movement.
+ * 3. **Heuristic**: We'll use the Manhattan distance as the heuristic, which is suitable for this type of grid-based
+ *    movement.
  */
 
 type Point = {
