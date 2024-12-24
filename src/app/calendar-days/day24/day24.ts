@@ -1,6 +1,5 @@
 import {DayBase} from "../../utlils/DayBase";
 
-
 /**
  * Represents a command structure that includes operators, an operand, and a target.
  *
@@ -68,7 +67,7 @@ export class Day24 extends DayBase {
    * sorting the wire map, and converting specific values in the map from binary to decimal.
    *
    * @return {number} The decimal representation of the sorted and transformed binary string
-   *                  formed from specific entries in the initial wire map.
+   *                  formed from specific entries in the initial wire map. (36035961805936)
    */
   calcPartOne(): number {
     this.readInitialWireAndCommandTable();
@@ -83,6 +82,8 @@ export class Day24 extends DayBase {
       if (/^z\d\d$/.test(key))
         data += value ? '1' : '0';
     }
+
+    console.log(data.length);
     const resultBinary = data.split('').reverse().join('');
     const resultDecimal = parseInt(resultBinary, 2);
 

@@ -123,3 +123,97 @@ z12: 0
 
 Die Kombination der Bits aller Drähte, die mit `z` beginnen, ergibt die Binärzahl **0011111101000**. Umgerechnet in eine Dezimalzahl ergibt dies **2024**.
 Simuliere das System aus Gattern und Drähten. Welche Dezimalzahl ergibt sich auf den Drähten, die mit `z` beginnen?
+
+**--- Teil Zwei ---**
+
+Nachdem du das Überwachungsgerät genauer untersucht hast, stellst du fest, dass das System, das du simulierst, versucht, zwei Binärzahlen zu addieren.
+
+Genauer gesagt behandelt das System die Bits auf Drähten, die mit `x` beginnen, als eine Binärzahl, die Bits auf Drähten, die mit `y` beginnen,
+als eine zweite Binärzahl und versucht dann, diese beiden Zahlen zusammenzurechnen. Das Ergebnis dieser Addition wird als Binärzahl auf den Drähten ausgegeben,
+die mit `z` beginnen. (In allen drei Fällen ist der Draht `00` das niederwertigste Bit, danach folgen `01`, dann `02` und so weiter.)
+
+Die Anfangswerte der Drähte in deinem Rätselinput repräsentieren nur ein Beispiel eines Zahlenpaars, das zu einem falschen Ergebnis führt.
+Letztendlich sollte jedes beliebige Bitmuster, das an die Drähte beginnt mit `x` und `y` übergeben wird, korrekt summiert werden. Das heißt,
+dass jede Kombination von Bits, die auf den `x`-Drähten und den `y`-Drähten bereitgestellt wird, korrekt als Binärzahl auf den `z`-Drähten ausgegeben werden sollte.
+
+Zum Beispiel, wenn du ein Additionssystem mit vier `x`-Drähten, vier `y`-Drähten und fünf `z`-Drähten hast, solltest du jede vierstellige Binärzahl
+auf den `x`-Drähten, jede vierstellige Binärzahl auf den `y`-Drähten angeben können, und schließlich die Summe dieser beiden Zahlen als fünfstellige
+Binärzahl auf den `z`-Drähten finden können. Eine Möglichkeit, Zahlen in ein solches System einzuspeisen, wäre zum Beispiel, 11 auf den `x`-Drähten (1011 in Binär)
+und 13 auf den `y`-Drähten (1101 in Binär) zu übergeben:
+
+```
+x00: 1
+x01: 1
+x02: 0
+x03: 1
+y00: 1
+y01: 0
+y02: 1
+y03: 1
+```
+
+Wenn das System korrekt funktioniert, solltest du nach der Verarbeitung aller Tore 24 (11+13) auf den `z`-Drähten als die fünfstellige Binärzahl 11000 finden:
+
+```
+z00: 0
+z01: 0
+z02: 0
+z03: 1
+z04: 1
+```
+
+Leider muss dein aktuelles System Zahlen mit wesentlich mehr Bits addieren können und hat daher auch viel mehr Drähte.
+
+Basierend auf forensischen Analysen der Kratzspuren am Gerät kannst du feststellen, dass genau **vier Paare von Toren** ihre Ausgabedrähte vertauscht haben.
+(Ein Tor kann nur in höchstens einem solchen Paar sein; die Ausgabedrähte eines einzelnen Tores wurden nicht mehrfach vertauscht.)
+
+Zum Beispiel soll das folgende System das bitweise UND der 6-Bit-Zahlen auf `x00` bis `x05` und `y00` bis `y05` finden
+und das Ergebnis als 6-Bit-Zahl auf `z00` bis `z05` schreiben:
+
+```
+x00: 0
+x01: 1
+x02: 0
+x03: 1
+x04: 0
+x05: 1
+y00: 0
+y01: 0
+y02: 1
+y03: 1
+y04: 0
+y05: 1
+
+x00 AND y00 -> z05  
+x01 AND y01 -> z02  
+x02 AND y02 -> z01  
+x03 AND y03 -> z03  
+x04 AND y04 -> z04  
+x05 AND y05 -> z00
+
+```
+
+In diesem Beispiel wurden zwei Paare von Toren mit vertauschten Ausgängen verschaltet, wodurch das System falsche Antworten liefert.
+Das erste Paar vertauschter Tore ist `x00 AND y00 -> z05` und `x05 AND y05 -> z00`; das zweite Paar ist `x01 AND y01 -> z02` und `x02 AND y02 -> z01`.
+Wenn diese beiden Vertauschungen korrigiert werden, arbeitet das System wie beabsichtigt für jeden Satz von Anfangswerten auf den Drähten, die mit `x` oder `y` beginnen:
+
+```
+x00 AND y00 -> z00  
+x01 AND y01 -> z01  
+x02 AND y02 -> z02  
+x03 AND y03 -> z03  
+x04 AND y04 -> z04  
+x05 AND y05 -> z05
+```
+
+In diesem Beispiel gibt es zwei Paare von Toren, deren Ausgänge vertauscht wurden. Indem du die Namen ihrer Ausgangsdrähte alphabetisch sortierst
+und mit Kommata verbindest, ergibt sich die Liste der Drähte, die an den Vertauschungen beteiligt sind: `z00,z01,z02,z05`.
+
+Natürlich ist dein tatsächliches System viel komplexer, und die Tore, deren Ausgänge vertauscht werden müssen, können sich überall befinden, nicht nur an Drähten, die mit `z` beginnen.
+Wenn du herausfinden würdest, dass du die Ausgänge der Drähte `aaa` mit `eee`, `ooo` mit `z99`, `bbb` mit `ccc` und `aoc` mit `z24` tauschen musst, wäre die Antwort: `aaa,aoc,bbb,ccc,eee,ooo,z24,z99`.
+
+Dein System aus Toren und Drähten hat vier Paare von Toren, deren Ausgänge vertauscht werden müssen – insgesamt acht Drähte.
+**Bestimme, welche vier Paare von Toren ihre Ausgänge vertauschen müssen, damit dein System korrekt addiert;
+was ergibt sich, wenn du die Namen der acht Drähte, die in einer Vertauschung verwickelt sind, alphabetisch sortierst und mit Kommata verbindest?**
+
+
