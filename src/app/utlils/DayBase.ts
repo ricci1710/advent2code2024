@@ -39,7 +39,7 @@ export abstract class DayBase {
    *
    * @return {Subscription} The subscription to the HTTP request.
    */
-  readPrivateData() {
+  readPrivateData(): Subscription {
     const url = `/assets/private/day${this.day < 10 ? '0' : ''}${this.day}.dat`;
     return this.httpClient.request('GET', url, {responseType: 'text'}).subscribe(res => {
       this.storeData = res.replaceAll('\r', '').split('\n');
